@@ -17,12 +17,41 @@ function table(){
     for(let i=0;i<4;i++){
         data+=`<tr>`;
         for(let j=0;j<4;j++){
-            data+=`<td> ${arr2[number]}</td>`;
+            data+=`<td onclick="Click_button(event)"> ${arr2[number]}</td>`;
             number++;
         }
         data+=`</tr>`;
     }
     tbl.innerHTML=data;
+
+
+    function condition(){
+        alert("Your time finished! Game Over!");
+    }
+    setTimeout(condition, 25*1000);
+}
+let num = 1;
+function Click_button(event) {
+    let n = event.target
+    let num_sel = parseInt(n.textContent);
+    if (num_sel === num) {
+       n.classList.add("success");
+       num++;
+       if (num>16) {
+        n.classList.add("success");
+        setTimeout(condition);
+        function condition(){
+            alert("You have won the game");
+        }
+        }
+    } 
+    else {
+        n.classList.add("alarm");
+        setTimeout(condition);
+        function condition(){
+            alert("You have lost the game!",);
+        }
+    }
 }
 table();
 
